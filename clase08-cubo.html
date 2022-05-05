@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cubo 3D</title>
+    <style>
+        #cubo {
+            /* perspective: 100px; */
+            position: absolute;
+            top: 200px;
+            left: calc(50% - 100px);
+            width: 200px;
+            height: 200px;
+            transition: 5s;
+            transform-style: preserve-3d;
+        }
+
+        /* #cubo:hover {
+            transform: rotate3d(1, 1, 0, 360deg);
+        } */
+
+        #cubo div {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        #izquierda {
+            background-color: rgba(255, 0, 0, 0.5);
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+
+        #derecha {
+            background-color: rgba(0, 255, 0, 0.5);
+            transform: rotateY(90deg) translateZ(100px);
+        }
+
+        #arriba {
+            background-color: rgba(0, 0, 255, 0.5);
+            transform: rotateX(90deg) translateZ(100px);
+        }
+
+        #abajo {
+            background-color: rgba(255, 255, 0, 0.5);
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+
+        #frente {
+            background-color: rgba(255, 0, 255, 0.5);
+            transform: translateZ(100px);
+        }
+
+        #atras {
+            background-color: rgba(0, 255, 255, 0.5);
+            transform: translateZ(-100px);
+        }
+    </style>
+</head>
+<body>
+    <button id="arr">ARRIBA</button>
+    <button id="izq">IZQUIERDA</button>
+    <button id="der">DERECHA</button>
+    <button id="aba">ABAJO</button>
+
+    <div id="cubo">
+        <div id="izquierda">IZQUIERDA</div>
+        <div id="derecha">DERECHA</div>
+        <div id="arriba">ARRIBA</div>
+        <div id="abajo">ABAJO</div>
+        <div id="frente">FRENTE</div>
+        <div id="atras">ATRAS</div>
+    </div>
+
+    <script>
+        const cubo = document.querySelector('#cubo');
+        const izq = document.querySelector('#izq');
+        const der = document.querySelector('#der');
+        const arr = document.querySelector('#arr');
+        const aba = document.querySelector('#aba');
+
+        const data = {
+            x: 0,
+            y: 0
+        }
+
+        function mover () {
+            cubo.style.transform = `rotateX(${data.x}deg) rotateY(${data.y}deg)`;
+        }
+
+        izq.addEventListener('click', e => {
+            data.y -= 90;
+            mover();
+        });
+
+        der.addEventListener('click', e => {
+            data.y += 90;
+            mover();
+        });
+
+        arr.addEventListener('click', e => {
+            data.x += 90;
+            mover();
+        });
+
+        aba.addEventListener('click', e => {
+            data.x -= 90;
+            mover();
+        });
+    </script>
+</body>
+</html>
